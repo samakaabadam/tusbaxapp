@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    let SerialNo = 0;
+    let tiriye = 0;
+    let result = 0;
+
+    // Wait for the DOM to fully load before attaching event listeners
+    document.addEventListener('DOMContentLoaded', function () {
+        // Reset counter and clear the screen when the first button is clicked
+        document.getElementById('first').addEventListener('click', function () {
+            document.getElementById('num1').textContent = 0;
+            document.getElementById('screen').textContent = "";
+            SerialNo = 0;
+            tiriye = 0;
+            result = 0;
+
+            document.getElementById('center').style.background = "yellow";
+            document.getElementById('center').style.color = "black";
+            document.getElementById('center').style.padding = "20px";
+
+            document.querySelectorAll('span').forEach(function (element) {
+                element.style.background = "antiquewhite";
+            });
+        });
+
+        // Increment counter and update the screen when the second button is clicked
+        document.getElementById('second').addEventListener('click', function () {
+            let currentNum1 = parseInt(document.getElementById('num1').textContent) || 0; // Convert text to a number (or default to 0)
+            result = currentNum1 + 1; // Increment the value by 1
+            SerialNo += 1;
+            tiriye += 1;
+
+            // Change background color for specific results
+            if (result == 5) document.querySelector('.span1').style.background = "green";
+            if (result == 10) document.querySelector('.span2').style.background = "green";
+            if (result == 15) document.querySelector('.span3').style.background = "green";
+            if (result == 20) document.querySelector('.span4').style.background = "green";
+            if (result == 25) document.querySelector('.span5').style.background = "green";
+            if (result == 30) document.querySelector('.span6').style.background = "green";
+            if (result == 33) document.querySelector('.span7').style.background = "green";
+
+            if (result == 34) {
+                result = 1;
+                document.querySelectorAll('span').forEach(function (element) {
+                    element.style.background = "antiquewhite";
+                });
+            }
+
+            // Update the display and logic based on specific SerialNo values
+            if (SerialNo == 1) {
+                document.getElementById('screen').textContent = "سُبْحَانَ اللّٰهِ";
+                document.getElementById('num1').textContent = result;
+                document.getElementById('center').style.background = "wheat";
+                document.getElementById('center').style.color = "black";
+                document.getElementById('center').style.fontWeight = "bold";
+                document.getElementById('center').style.padding = "20px";
+            }
+
+            if (SerialNo <= 33 && SerialNo != 34) {
+                document.getElementById('screen').textContent = "سُبْحَانَ اللّٰهِ";
+                document.getElementById('num1').textContent = result;
+            }
+
+            if (SerialNo == 34) {
+                document.getElementById('center').style.background = "darkblue";
+                document.getElementById('center').style.color = "white";
+                document.getElementById('center').style.padding = "20px";
+                document.getElementById('screen').textContent = "اَلْحَمْدُ لِلّٰهِ";
+                document.getElementById('num1').textContent = result;
+            }
+
+            if (SerialNo <= 66 && SerialNo > 34) {
+                document.getElementById('screen').textContent = "اَلْحَمْدُ لِلّٰهِ";
+                document.getElementById('num1').textContent = result;
+            }
+
+            if (SerialNo == 67) {
+                document.getElementById('center').style.background = "brown";
+                document.getElementById('center').style.color = "white";
+                document.getElementById('center').style.padding = "20px";
+                document.getElementById('num1').textContent = result;
+                document.getElementById('screen').textContent = "أَكْبَرُ اَللّٰهُ";
+            }
+
+            if (SerialNo <= 99 && SerialNo > 66) {
+                document.getElementById('screen').textContent = "اَللّٰهُ أَكْبَرُ";
+                document.getElementById('num1').textContent = result;
+            } else if (SerialNo == 100) {
+                document.getElementById('num1').textContent = result;
+                SerialNo = 0;
+                document.getElementById('num1').textContent = "";
+                document.getElementById('screen').textContent = "لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرٌ";
+                document.getElementById('screen').style.padding = "20px";
+            }
+        });
+    });
+</script>
+
+ <style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    background-color: rgb(3, 3, 3);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  }
+
+  .center {
+    margin: 10% auto; /* Center horizontally */
+    padding: 30px;
+    background-color: yellow;
+    font-size: large;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Corrected shadow color */
+    border-radius: 50%; /* Circular shape */
+    color: brown;
+    text-align: center; /* Center the text */
+    width: 300px; /* Set a fixed width */
+  }
+
+  .center .buut {
+    display: flex;
+    justify-content: space-between; /* Distribute buttons evenly */
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  #first,
+  #second {
+    border-radius: 30px;
+    font-size: large;
+    padding: 2px;
+    background-color: blueviolet;
+    color: white; /* Set button text color to white */
+    width: 100px;
+    height: 50px;
+    border: none; /* Remove border */
+    cursor: pointer; /* Add cursor pointer */
+  }
+
+  #screen {
+    font-size: 24px;
+  }
+
+  #num1 {
+    font-size: 48px;
+  }
+
+  .colors {
+    width: 100%;
+    display: flex; /* Use flexbox to layout spans */
+    justify-content: space-between; /* Ensure spans fill the container */
+    background-color: red;
+    align-items: center;
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    border-radius: 50px 50px 50px 50px;
+    border: 5px solid white;
+  }
+
+  .colors span {
+    background-color: antiquewhite;
+    flex: 1; /* Make spans take up equal space */
+    height: 30px; /* Set a fixed height */
+    margin: 0; /* Remove margin */
+  }
+  .span1{
+    border-radius: 50px 0px 0px 50px;
+  }
+  .span7{
+    border-radius: 0px 50px 50px 0px;
+  }
+</style>
+</head>
+
+<body>
+  <div class="center" id="center">
+    <p id="screen"></p><br>
+    <p id="num1">0</p><br>
+    <div class="colors">
+      <span class="span1"></span>
+      <span class="span2"></span>
+      <span class="span3" ></span>
+      <span class="span4"></span>
+      <span class="span5"></span>
+      <span class="span6"></span>
+      <span class="span7"></span>
+    </div>
+    <div class="buut">
+      <button id="first">Reset</button>
+      <button id="second">Counter</button>
+    </div>
+  </div>
+</body>
+
+</html>
+
